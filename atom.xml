@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>zhangzy&#39;s blog</title>
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-10T08:30:13.000Z</updated>
+  <updated>2017-04-10T08:59:31.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>zhangzy</name>
     
   </author>
   
@@ -20,9 +20,10 @@
     <link href="http://yoursite.com/2017/04/10/my-first-post/"/>
     <id>http://yoursite.com/2017/04/10/my-first-post/</id>
     <published>2017-04-10T08:28:40.000Z</published>
-    <updated>2017-04-10T08:30:13.000Z</updated>
+    <updated>2017-04-10T08:59:31.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="My-First-Post"><a href="#My-First-Post" class="headerlink" title="My First Post"></a>My First Post</h2><p>  这是本人使用hexo+github搭建的博客的第一篇文章。^_^</p>
+    <content type="html"><![CDATA[<h2 id="My-First-Post"><a href="#My-First-Post" class="headerlink" title="My First Post"></a>My First Post</h2><p>  这是本人使用hexo+github搭建的博客的第一篇文章。^_^ 在经历个各种坑以后突然发现这个让人眼前一亮的东西，着实让我虎躯一震。  </p>
+<p>  既然已经建立了自己的个人博客，那就要用心的去经营。以后我自己会在这个平台上慢慢分享一些自己的学习踩坑经历和自己的一些见解（本人就是个菜鸟，还是希望能够得到各路大神的指导）。</p>
 ]]></content>
     
     <summary type="html">
@@ -31,6 +32,8 @@
     
     </summary>
     
+    
+      <category term="essay" scheme="http://yoursite.com/tags/essay/"/>
     
   </entry>
   
