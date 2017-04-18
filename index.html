@@ -249,6 +249,157 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/18/聊聊js函数传递参数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangzy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhangzy's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/18/聊聊js函数传递参数/" itemprop="url">
+                  聊聊js函数传递参数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-18T10:58:09+08:00">
+                2017-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><pre><code>我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  
+</code></pre><pre><code>例1:
+    function setName(obj){  
+        obj.name = &apos;Tom&apos;;  
+    }  
+
+    var someOne = new Object();  
+    setName(someOne);  
+    alert(someOne.name); // &apos;Tom&apos;
+</code></pre><pre><code>“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  
+
+不着急，我们慢慢讲： 
+当我们把函数外部的值肤质给函数内部的参数时，就相当于把值从一个变量复制到另一个变量。  
+换句话说，基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，就如同引用类型的复制一样了。  
+
+让我们回到例1:   
+在例1中，在这个函数内部，obj和someOne引用的是同一个对象。  
+即使这个变量是按照值传递的，obj也会按引用访问同一个对象。  
+那么我们如何才能证明它是值传递呢？请看下一个例子：  
+</code></pre><pre><code>例2:  
+    function setName(obj){  
+        obj.name = &apos;Tom&apos;;  
+        obj = new Object();
+        obj.name = &apos;Jack&apos;;
+    }  
+
+    var someOne = new Object();  
+    setName(someOne);  
+    alert(someOne.name); // &apos;Tom&apos;
+</code></pre><pre><code>如果参数是引用传递的话，那么someOne会被自动修改指向name属性为&apos;jack&apos;的新对象。  
+而实际情况是，someOne的name属性依旧是&apos;Tom&apos;    
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/my-first-post/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -537,7 +688,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -550,7 +701,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
