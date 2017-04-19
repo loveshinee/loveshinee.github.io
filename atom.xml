@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-19T07:49:14.000Z</updated>
+  <updated>2017-04-19T08:55:42.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://yoursite.com/2017/04/19/%E5%85%B3%E4%BA%8Eunity%E6%8F%92%E4%BB%B6%E9%81%AE%E6%8C%A1div%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2017/04/19/关于unity插件遮挡div的问题/</id>
     <published>2017-04-19T07:11:45.000Z</published>
-    <updated>2017-04-19T07:49:14.000Z</updated>
+    <updated>2017-04-19T08:55:42.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="聊聊今天工作中遇到的unity遮挡div的问题"><a href="#聊聊今天工作中遇到的unity遮挡div的问题" class="headerlink" title="聊聊今天工作中遇到的unity遮挡div的问题"></a>聊聊今天工作中遇到的unity遮挡div的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。
-</code></pre><h3 id="事情的经过"><a href="#事情的经过" class="headerlink" title="事情的经过"></a>事情的经过</h3><pre><code>“我靠，这么简单的需求秒秒钟啊”，请看代码  
-</code></pre><pre><code>部分代码展示，这里意会即可
+    <content type="html"><![CDATA[<h2 id="聊聊今天工作中遇到的unity遮挡div的问题"><a href="#聊聊今天工作中遇到的unity遮挡div的问题" class="headerlink" title="聊聊今天工作中遇到的unity遮挡div的问题"></a>聊聊今天工作中遇到的unity遮挡div的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>&emsp;&emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。</p>
+<h3 id="事情的经过"><a href="#事情的经过" class="headerlink" title="事情的经过"></a>事情的经过</h3><p>&emsp;&emsp;“我靠，这么简单的需求秒秒钟啊”，请看代码  </p>
+<pre><code>部分代码展示，这里意会即可
 &lt;style&gt;
     .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
     .page a{display: block;width: 100%;text-align: center;}
@@ -43,16 +43,16 @@
         //这里是逻辑
     &lt;/script&gt;
 &lt;/html&gt;
-</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><pre><code>div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的
-</code></pre><h3 id="暴力解决方案"><a href="#暴力解决方案" class="headerlink" title="暴力解决方案"></a>暴力解决方案</h3><pre><code>&lt;script&gt;
+</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的</p>
+<h3 id="暴力解决方案"><a href="#暴力解决方案" class="headerlink" title="暴力解决方案"></a>暴力解决方案</h3><pre><code>&lt;script&gt;
     //JS代码以Jquery为基础所写
     $(&apos;.content&apos;).hide();
 &lt;/script&gt;
-</code></pre><p>哼，这下你拿我没办法了吧，让你消失  </p>
-<h3 id="悲伤的故事又发生了"><a href="#悲伤的故事又发生了" class="headerlink" title="悲伤的故事又发生了"></a>悲伤的故事又发生了</h3><p>  div.content完美的消失了，但是！当他再次show()的时候，竟然要重新加载游戏，我去，这经理还不宰了我，不行不行，赶紧找下一套方案。  </p>
-<h3 id="八方求助"><a href="#八方求助" class="headerlink" title="八方求助"></a>八方求助</h3><p>  “听说iframe能行”，好，速战速决。将.page抽出来，写在外部文件，用iframe引入。<br>  然而，结果不如人意：<br>  iframe显示出来了，但是unity依旧没有消失啊！伤心。。  </p>
-<h3 id="时来运转"><a href="#时来运转" class="headerlink" title="时来运转"></a>时来运转</h3><pre><code>浏览各种解决方案时候，无意间看到了visibility这个属性，灵机一动，对啊，占位隐藏啊，说干就干啊  
-</code></pre><pre><code>&lt;style&gt;
+</code></pre><p>&emsp;&emsp;哼，这下你拿我没办法了吧，让你消失  </p>
+<h3 id="悲伤的故事又发生了"><a href="#悲伤的故事又发生了" class="headerlink" title="悲伤的故事又发生了"></a>悲伤的故事又发生了</h3><p>&emsp;&emsp;div.content完美的消失了，但是！当他再次show()的时候，竟然要重新加载游戏，我去，这经理还不宰了我，不行不行，赶紧找下一套方案。  </p>
+<h3 id="八方求助"><a href="#八方求助" class="headerlink" title="八方求助"></a>八方求助</h3><p>&emsp;&emsp;“听说iframe能行”，好，速战速决。将.page抽出来，写在外部文件，用iframe引入。<br>&emsp;&emsp;然而，结果不如人意：<br>&emsp;&emsp;iframe显示出来了，但是unity依旧没有消失啊！伤心。。  </p>
+<h3 id="时来运转"><a href="#时来运转" class="headerlink" title="时来运转"></a>时来运转</h3><p>&emsp;&emsp;浏览各种解决方案时候，无意间看到了visibility这个属性，灵机一动，对啊，占位隐藏啊，说干就干啊  </p>
+<pre><code>&lt;style&gt;
     .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
     .page a{display: block;width: 100%;text-align: center;}
 &lt;/style&gt;
@@ -74,9 +74,9 @@
         $(&apos;.content&apos;).css(&apos;visibility&apos;,&apos;visible&apos;);
     &lt;/script&gt;
 &lt;/html&gt;
-</code></pre><h3 id="大快人心"><a href="#大快人心" class="headerlink" title="大快人心"></a>大快人心</h3><pre><code>我去666啊，解决了啊，老板老板，我搞定了啊（本来10分钟的工作，又愣是搞了这么多，我去 = =）  
-</code></pre><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><pre><code>CSS虽然简单，但是用处还是大大滴啊！
-</code></pre>]]></content>
+</code></pre><h3 id="大快人心"><a href="#大快人心" class="headerlink" title="大快人心"></a>大快人心</h3><p>&emsp;&emsp;我去666啊，解决了啊，老板老板，我搞定了啊（本来10分钟的工作，又愣是搞了这么多，我去 = =）  </p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>&emsp;&emsp;CSS虽然简单，但是用处还是大大滴啊！</p>
+]]></content>
     
     <summary type="html">
     
