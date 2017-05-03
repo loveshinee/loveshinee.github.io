@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-19T08:55:42.000Z</updated>
+  <updated>2017-05-03T03:55:13.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/04/19/%E5%85%B3%E4%BA%8Eunity%E6%8F%92%E4%BB%B6%E9%81%AE%E6%8C%A1div%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2017/04/19/关于unity插件遮挡div的问题/</id>
     <published>2017-04-19T07:11:45.000Z</published>
-    <updated>2017-04-19T08:55:42.000Z</updated>
+    <updated>2017-05-03T03:55:13.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="聊聊今天工作中遇到的unity遮挡div的问题"><a href="#聊聊今天工作中遇到的unity遮挡div的问题" class="headerlink" title="聊聊今天工作中遇到的unity遮挡div的问题"></a>聊聊今天工作中遇到的unity遮挡div的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>&emsp;&emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。</p>
 <h3 id="事情的经过"><a href="#事情的经过" class="headerlink" title="事情的经过"></a>事情的经过</h3><p>&emsp;&emsp;“我靠，这么简单的需求秒秒钟啊”，请看代码  </p>
@@ -43,7 +43,7 @@
         //这里是逻辑
     &lt;/script&gt;
 &lt;/html&gt;
-</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的</p>
+</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的<br><a id="more"></a></p>
 <h3 id="暴力解决方案"><a href="#暴力解决方案" class="headerlink" title="暴力解决方案"></a>暴力解决方案</h3><pre><code>&lt;script&gt;
     //JS代码以Jquery为基础所写
     $(&apos;.content&apos;).hide();
@@ -75,12 +75,61 @@
     &lt;/script&gt;
 &lt;/html&gt;
 </code></pre><h3 id="大快人心"><a href="#大快人心" class="headerlink" title="大快人心"></a>大快人心</h3><p>&emsp;&emsp;我去666啊，解决了啊，老板老板，我搞定了啊（本来10分钟的工作，又愣是搞了这么多，我去 = =）  </p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>&emsp;&emsp;CSS虽然简单，但是用处还是大大滴啊！</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>&emsp;&emsp;CSS虽然简单，但是用处还是大大滴啊！  </p>
+<h3 id="后续发展"><a href="#后续发展" class="headerlink" title="后续发展"></a>后续发展</h3><p>&emsp;&emsp; 测试人员发现：<br>&emsp;&emsp;在一些版本的Firefox中，总是需要将鼠标移动一段距离，才能执行遮盖层上面的click事件，这不行啊，不符合要求。怎么办？  </p>
+<h3 id="又出一招"><a href="#又出一招" class="headerlink" title="又出一招"></a>又出一招</h3><p>&emsp;&emsp;既然遮掩不掉，那我将它们写成最小啊，宽高1px啊  </p>
+<pre><code>&lt;style&gt;
+    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
+    .page a{display: block;width: 100%;text-align: center;}
+    .content{overflow: hidden}
+&lt;/style&gt;
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;content&quot;&gt;
+            //这里是unity。。。
+        &lt;/div&gt;
+        &lt;div class=&quot;page&quot;&gt;
+            //这里是遮盖层
+            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;        
+        &lt;/div&gt;    
+    &lt;/body&gt;
+    &lt;script&gt;
+        //这里是逻辑，以Jquery为基础所写
+        //隐藏时
+        $(&apos;.content&apos;).css({&apos;height&apos;:&apos;1px&apos;,&apos;width&apos;:&apos;1px&apos;});
+        $(&apos;unity&apos;).css({&apos;height&apos;:&apos;1px&apos;,&apos;width&apos;:&apos;1px&apos;});//unity为代指
+        //显示时
+        $(&apos;.content&apos;).css({&apos;height&apos;:&apos;auto&apos;,&apos;width&apos;:&apos;100%&apos;});
+        $(&apos;unity&apos;).css({&apos;height&apos;:&apos;auto&apos;,&apos;width&apos;:&apos;100%&apos;});//unity为代指
+    &lt;/script&gt;
+&lt;/html&gt;
+</code></pre><h3 id="长舒一口气"><a href="#长舒一口气" class="headerlink" title="长舒一口气"></a>长舒一口气</h3><p>&emsp;&emsp; 各项浏览器测试了一番，终于大功告成了</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;聊聊今天工作中遇到的unity遮挡div的问题&quot;&gt;&lt;a href=&quot;#聊聊今天工作中遇到的unity遮挡div的问题&quot; class=&quot;headerlink&quot; title=&quot;聊聊今天工作中遇到的unity遮挡div的问题&quot;&gt;&lt;/a&gt;聊聊今天工作中遇到的unity遮挡
+      &lt;h2 id=&quot;聊聊今天工作中遇到的unity遮挡div的问题&quot;&gt;&lt;a href=&quot;#聊聊今天工作中遇到的unity遮挡div的问题&quot; class=&quot;headerlink&quot; title=&quot;聊聊今天工作中遇到的unity遮挡div的问题&quot;&gt;&lt;/a&gt;聊聊今天工作中遇到的unity遮挡div的问题&lt;/h2&gt;&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;&amp;emsp;&amp;emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。&lt;/p&gt;
+&lt;h3 id=&quot;事情的经过&quot;&gt;&lt;a href=&quot;#事情的经过&quot; class=&quot;headerlink&quot; title=&quot;事情的经过&quot;&gt;&lt;/a&gt;事情的经过&lt;/h3&gt;&lt;p&gt;&amp;emsp;&amp;emsp;“我靠，这么简单的需求秒秒钟啊”，请看代码  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;部分代码展示，这里意会即可
+&amp;lt;style&amp;gt;
+    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
+    .page a{display: block;width: 100%;text-align: center;}
+&amp;lt;/style&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;div class=&amp;quot;content&amp;quot;&amp;gt;
+            //这里是unity。。。
+        &amp;lt;/div&amp;gt;
+        &amp;lt;div class=&amp;quot;page&amp;quot;&amp;gt;
+            //这里是遮盖层
+            &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;        
+        &amp;lt;/div&amp;gt;    
+    &amp;lt;/body&amp;gt;
+    &amp;lt;script&amp;gt;
+        //这里是逻辑
+    &amp;lt;/script&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;悲伤的故事发生了&quot;&gt;&lt;a href=&quot;#悲伤的故事发生了&quot; class=&quot;headerlink&quot; title=&quot;悲伤的故事发生了&quot;&gt;&lt;/a&gt;悲伤的故事发生了&lt;/h3&gt;&lt;p&gt;&amp;emsp;&amp;emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的&lt;br&gt;
     
     </summary>
     
@@ -94,44 +143,52 @@
     <link href="http://yoursite.com/2017/04/18/%E8%81%8A%E8%81%8Ajs%E5%87%BD%E6%95%B0%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0/"/>
     <id>http://yoursite.com/2017/04/18/聊聊js函数传递参数/</id>
     <published>2017-04-18T02:58:09.000Z</published>
-    <updated>2017-04-18T09:27:28.000Z</updated>
+    <updated>2017-05-03T03:54:29.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><pre><code>我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  
-</code></pre><pre><code>例1:
-    function setName(obj){  
-        obj.name = &apos;Tom&apos;;  
-    }  
+    <content type="html"><![CDATA[<h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><p>&emsp;&emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  </p>
+<pre><code>例1:
+    &lt;script&gt;
+        function setName(obj){  
+            obj.name = &apos;Tom&apos;;  
+        }  
 
-    var someOne = new Object();  
-    setName(someOne);  
-    alert(someOne.name); // &apos;Tom&apos;
-</code></pre><pre><code>“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  
+        var someOne = new Object();  
+        setName(someOne);  
+        alert(someOne.name); // &apos;Tom&apos;
+    &lt;/script&gt;
+</code></pre><p>&emsp;&emsp;“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  </p>
+<p>&emsp;&emsp;不着急，我们慢慢讲：<br> <a id="more"></a><br>&emsp;&emsp;当我们把函数外部的值肤质给函数内部的参数时，就相当于把值从一个变量复制到另一个变量。<br>&emsp;&emsp;换句话说，基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，就如同引用类型的复制一样了。  </p>
+<p>&emsp;&emsp;让我们回到例1:<br>&emsp;&emsp;在例1中，在这个函数内部，obj和someOne引用的是同一个对象。<br>&emsp;&emsp;即使这个变量是按照值传递的，obj也会按引用访问同一个对象。<br>&emsp;&emsp;那么我们如何才能证明它是值传递呢？请看下一个例子：  </p>
+<pre><code>例2: 
+    &lt;script&gt; 
+        function setName(obj){  
+            obj.name = &apos;Tom&apos;;  
+            obj = new Object();
+            obj.name = &apos;Jack&apos;;
+        }  
 
-不着急，我们慢慢讲： 
-当我们把函数外部的值肤质给函数内部的参数时，就相当于把值从一个变量复制到另一个变量。  
-换句话说，基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，就如同引用类型的复制一样了。  
-
-让我们回到例1:   
-在例1中，在这个函数内部，obj和someOne引用的是同一个对象。  
-即使这个变量是按照值传递的，obj也会按引用访问同一个对象。  
-那么我们如何才能证明它是值传递呢？请看下一个例子：  
-</code></pre><pre><code>例2:  
-    function setName(obj){  
-        obj.name = &apos;Tom&apos;;  
-        obj = new Object();
-        obj.name = &apos;Jack&apos;;
-    }  
-
-    var someOne = new Object();  
-    setName(someOne);  
-    alert(someOne.name); // &apos;Tom&apos;
-</code></pre><pre><code>如果参数是引用传递的话，那么someOne会被自动修改指向name属性为&apos;jack&apos;的新对象。  
-而实际情况是，someOne的name属性依旧是&apos;Tom&apos;    
-</code></pre>]]></content>
+        var someOne = new Object();  
+        setName(someOne);  
+        alert(someOne.name); // &apos;Tom&apos; 
+    &lt;/script&gt;
+</code></pre><p>&emsp;&emsp;如果参数是引用传递的话，那么someOne会被自动修改指向name属性为’jack’的新对象。<br>&emsp;&emsp;而实际情况是，someOne的name属性依旧是’Tom’    </p>
+]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;聊聊JS函数传递参数&quot;&gt;&lt;a href=&quot;#聊聊JS函数传递参数&quot; class=&quot;headerlink&quot; title=&quot;聊聊JS函数传递参数&quot;&gt;&lt;/a&gt;聊聊JS函数传递参数&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;我们知道，ECMAScript中所有的参数都是按值来传递的。
+      &lt;h2 id=&quot;聊聊JS函数传递参数&quot;&gt;&lt;a href=&quot;#聊聊JS函数传递参数&quot; class=&quot;headerlink&quot; title=&quot;聊聊JS函数传递参数&quot;&gt;&lt;/a&gt;聊聊JS函数传递参数&lt;/h2&gt;&lt;p&gt;&amp;emsp;&amp;emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;例1:
+    &amp;lt;script&amp;gt;
+        function setName(obj){  
+            obj.name = &amp;apos;Tom&amp;apos;;  
+        }  
+
+        var someOne = new Object();  
+        setName(someOne);  
+        alert(someOne.name); // &amp;apos;Tom&amp;apos;
+    &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&amp;emsp;&amp;emsp;“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  &lt;/p&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;不着急，我们慢慢讲：&lt;br&gt;
     
     </summary>
     

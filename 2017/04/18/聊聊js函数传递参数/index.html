@@ -89,17 +89,17 @@
 
 
 
-<meta name="description" content="聊聊JS函数传递参数我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:   例1:     function setName(obj){           obj.name = &amp;apos;Tom&amp;apos;;       }        var someOne = new Object();       setName(someOne);">
+<meta name="description" content="聊聊JS函数传递参数&amp;emsp;&amp;emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:   例1:     &amp;lt;script&amp;gt;         function setName(obj){               obj.name = &amp;apos;Tom&amp;apos;;           }            var s">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聊聊js函数传递参数">
 <meta property="og:url" content="http://yoursite.com/2017/04/18/聊聊js函数传递参数/index.html">
 <meta property="og:site_name" content="zhangzy's blog">
-<meta property="og:description" content="聊聊JS函数传递参数我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:   例1:     function setName(obj){           obj.name = &amp;apos;Tom&amp;apos;;       }        var someOne = new Object();       setName(someOne);">
-<meta property="og:updated_time" content="2017-04-18T09:27:28.000Z">
+<meta property="og:description" content="聊聊JS函数传递参数&amp;emsp;&amp;emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:   例1:     &amp;lt;script&amp;gt;         function setName(obj){               obj.name = &amp;apos;Tom&amp;apos;;           }            var s">
+<meta property="og:updated_time" content="2017-05-03T03:54:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊js函数传递参数">
-<meta name="twitter:description" content="聊聊JS函数传递参数我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:   例1:     function setName(obj){           obj.name = &amp;apos;Tom&amp;apos;;       }        var someOne = new Object();       setName(someOne);">
+<meta name="twitter:description" content="聊聊JS函数传递参数&amp;emsp;&amp;emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:   例1:     &amp;lt;script&amp;gt;         function setName(obj){               obj.name = &amp;apos;Tom&amp;apos;;           }            var s">
 
 
 
@@ -324,38 +324,34 @@
       
 
       
-        <h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><pre><code>我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  
-</code></pre><pre><code>例1:
-    function setName(obj){  
-        obj.name = &apos;Tom&apos;;  
-    }  
+        <h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><p>&emsp;&emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  </p>
+<pre><code>例1:
+    &lt;script&gt;
+        function setName(obj){  
+            obj.name = &apos;Tom&apos;;  
+        }  
 
-    var someOne = new Object();  
-    setName(someOne);  
-    alert(someOne.name); // &apos;Tom&apos;
-</code></pre><pre><code>“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  
+        var someOne = new Object();  
+        setName(someOne);  
+        alert(someOne.name); // &apos;Tom&apos;
+    &lt;/script&gt;
+</code></pre><p>&emsp;&emsp;“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  </p>
+<p>&emsp;&emsp;不着急，我们慢慢讲：<br> <a id="more"></a><br>&emsp;&emsp;当我们把函数外部的值肤质给函数内部的参数时，就相当于把值从一个变量复制到另一个变量。<br>&emsp;&emsp;换句话说，基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，就如同引用类型的复制一样了。  </p>
+<p>&emsp;&emsp;让我们回到例1:<br>&emsp;&emsp;在例1中，在这个函数内部，obj和someOne引用的是同一个对象。<br>&emsp;&emsp;即使这个变量是按照值传递的，obj也会按引用访问同一个对象。<br>&emsp;&emsp;那么我们如何才能证明它是值传递呢？请看下一个例子：  </p>
+<pre><code>例2: 
+    &lt;script&gt; 
+        function setName(obj){  
+            obj.name = &apos;Tom&apos;;  
+            obj = new Object();
+            obj.name = &apos;Jack&apos;;
+        }  
 
-不着急，我们慢慢讲： 
-当我们把函数外部的值肤质给函数内部的参数时，就相当于把值从一个变量复制到另一个变量。  
-换句话说，基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，就如同引用类型的复制一样了。  
+        var someOne = new Object();  
+        setName(someOne);  
+        alert(someOne.name); // &apos;Tom&apos; 
+    &lt;/script&gt;
+</code></pre><p>&emsp;&emsp;如果参数是引用传递的话，那么someOne会被自动修改指向name属性为’jack’的新对象。<br>&emsp;&emsp;而实际情况是，someOne的name属性依旧是’Tom’    </p>
 
-让我们回到例1:   
-在例1中，在这个函数内部，obj和someOne引用的是同一个对象。  
-即使这个变量是按照值传递的，obj也会按引用访问同一个对象。  
-那么我们如何才能证明它是值传递呢？请看下一个例子：  
-</code></pre><pre><code>例2:  
-    function setName(obj){  
-        obj.name = &apos;Tom&apos;;  
-        obj = new Object();
-        obj.name = &apos;Jack&apos;;
-    }  
-
-    var someOne = new Object();  
-    setName(someOne);  
-    alert(someOne.name); // &apos;Tom&apos;
-</code></pre><pre><code>如果参数是引用传递的话，那么someOne会被自动修改指向name属性为&apos;jack&apos;的新对象。  
-而实际情况是，someOne的name属性依旧是&apos;Tom&apos;    
-</code></pre>
       
     </div>
 

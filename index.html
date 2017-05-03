@@ -325,8 +325,7 @@
 
       
         
-          
-            <h2 id="聊聊今天工作中遇到的unity遮挡div的问题"><a href="#聊聊今天工作中遇到的unity遮挡div的问题" class="headerlink" title="聊聊今天工作中遇到的unity遮挡div的问题"></a>聊聊今天工作中遇到的unity遮挡div的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>&emsp;&emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。</p>
+          <h2 id="聊聊今天工作中遇到的unity遮挡div的问题"><a href="#聊聊今天工作中遇到的unity遮挡div的问题" class="headerlink" title="聊聊今天工作中遇到的unity遮挡div的问题"></a>聊聊今天工作中遇到的unity遮挡div的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>&emsp;&emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。</p>
 <h3 id="事情的经过"><a href="#事情的经过" class="headerlink" title="事情的经过"></a>事情的经过</h3><p>&emsp;&emsp;“我靠，这么简单的需求秒秒钟啊”，请看代码  </p>
 <pre><code>部分代码展示，这里意会即可
 &lt;style&gt;
@@ -347,41 +346,14 @@
         //这里是逻辑
     &lt;/script&gt;
 &lt;/html&gt;
-</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的</p>
-<h3 id="暴力解决方案"><a href="#暴力解决方案" class="headerlink" title="暴力解决方案"></a>暴力解决方案</h3><pre><code>&lt;script&gt;
-    //JS代码以Jquery为基础所写
-    $(&apos;.content&apos;).hide();
-&lt;/script&gt;
-</code></pre><p>&emsp;&emsp;哼，这下你拿我没办法了吧，让你消失  </p>
-<h3 id="悲伤的故事又发生了"><a href="#悲伤的故事又发生了" class="headerlink" title="悲伤的故事又发生了"></a>悲伤的故事又发生了</h3><p>&emsp;&emsp;div.content完美的消失了，但是！当他再次show()的时候，竟然要重新加载游戏，我去，这经理还不宰了我，不行不行，赶紧找下一套方案。  </p>
-<h3 id="八方求助"><a href="#八方求助" class="headerlink" title="八方求助"></a>八方求助</h3><p>&emsp;&emsp;“听说iframe能行”，好，速战速决。将.page抽出来，写在外部文件，用iframe引入。<br>&emsp;&emsp;然而，结果不如人意：<br>&emsp;&emsp;iframe显示出来了，但是unity依旧没有消失啊！伤心。。  </p>
-<h3 id="时来运转"><a href="#时来运转" class="headerlink" title="时来运转"></a>时来运转</h3><p>&emsp;&emsp;浏览各种解决方案时候，无意间看到了visibility这个属性，灵机一动，对啊，占位隐藏啊，说干就干啊  </p>
-<pre><code>&lt;style&gt;
-    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
-    .page a{display: block;width: 100%;text-align: center;}
-&lt;/style&gt;
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;div class=&quot;content&quot;&gt;
-            //这里是unity。。。
-        &lt;/div&gt;
-        &lt;div class=&quot;page&quot;&gt;
-            //这里是遮盖层
-            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;        
-        &lt;/div&gt;    
-    &lt;/body&gt;
-    &lt;script&gt;
-        //这里是逻辑，以Jquery为基础所写
-        //隐藏时
-        $(&apos;.content&apos;).css(&apos;visibility&apos;,&apos;hidden&apos;);
-        //显示时
-        $(&apos;.content&apos;).css(&apos;visibility&apos;,&apos;visible&apos;);
-    &lt;/script&gt;
-&lt;/html&gt;
-</code></pre><h3 id="大快人心"><a href="#大快人心" class="headerlink" title="大快人心"></a>大快人心</h3><p>&emsp;&emsp;我去666啊，解决了啊，老板老板，我搞定了啊（本来10分钟的工作，又愣是搞了这么多，我去 = =）  </p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>&emsp;&emsp;CSS虽然简单，但是用处还是大大滴啊！</p>
-
-          
+</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/19/关于unity插件遮挡div的问题/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -499,40 +471,26 @@
 
       
         
-          
-            <h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><pre><code>我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  
-</code></pre><pre><code>例1:
-    function setName(obj){  
-        obj.name = &apos;Tom&apos;;  
-    }  
+          <h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><p>&emsp;&emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  </p>
+<pre><code>例1:
+    &lt;script&gt;
+        function setName(obj){  
+            obj.name = &apos;Tom&apos;;  
+        }  
 
-    var someOne = new Object();  
-    setName(someOne);  
-    alert(someOne.name); // &apos;Tom&apos;
-</code></pre><pre><code>“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  
-
-不着急，我们慢慢讲： 
-当我们把函数外部的值肤质给函数内部的参数时，就相当于把值从一个变量复制到另一个变量。  
-换句话说，基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，就如同引用类型的复制一样了。  
-
-让我们回到例1:   
-在例1中，在这个函数内部，obj和someOne引用的是同一个对象。  
-即使这个变量是按照值传递的，obj也会按引用访问同一个对象。  
-那么我们如何才能证明它是值传递呢？请看下一个例子：  
-</code></pre><pre><code>例2:  
-    function setName(obj){  
-        obj.name = &apos;Tom&apos;;  
-        obj = new Object();
-        obj.name = &apos;Jack&apos;;
-    }  
-
-    var someOne = new Object();  
-    setName(someOne);  
-    alert(someOne.name); // &apos;Tom&apos;
-</code></pre><pre><code>如果参数是引用传递的话，那么someOne会被自动修改指向name属性为&apos;jack&apos;的新对象。  
-而实际情况是，someOne的name属性依旧是&apos;Tom&apos;    
-</code></pre>
-          
+        var someOne = new Object();  
+        setName(someOne);  
+        alert(someOne.name); // &apos;Tom&apos;
+    &lt;/script&gt;
+</code></pre><p>&emsp;&emsp;“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  </p>
+<p>&emsp;&emsp;不着急，我们慢慢讲：<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/18/聊聊js函数传递参数/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

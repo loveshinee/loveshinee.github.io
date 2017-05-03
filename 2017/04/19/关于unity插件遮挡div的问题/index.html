@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/19/关于unity插件遮挡div的问题/index.html">
 <meta property="og:site_name" content="zhangzy's blog">
 <meta property="og:description" content="聊聊今天工作中遇到的unity遮挡div的问题背景&amp;emsp;&amp;emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。 事情的经过&amp;emsp;&amp;emsp;“我靠，这么简单的需求秒秒钟啊”，请看代码   部分代码展示，这里意会即可 &amp;lt;style&amp;gt;     .page{display: none;position: absolute;left: 0;top">
-<meta property="og:updated_time" content="2017-04-19T08:55:42.000Z">
+<meta property="og:updated_time" content="2017-05-03T03:55:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于unity插件遮挡div的问题">
 <meta name="twitter:description" content="聊聊今天工作中遇到的unity遮挡div的问题背景&amp;emsp;&amp;emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。 事情的经过&amp;emsp;&amp;emsp;“我靠，这么简单的需求秒秒钟啊”，请看代码   部分代码展示，这里意会即可 &amp;lt;style&amp;gt;     .page{display: none;position: absolute;left: 0;top">
@@ -345,7 +345,7 @@
         //这里是逻辑
     &lt;/script&gt;
 &lt;/html&gt;
-</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的</p>
+</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的<br><a id="more"></a></p>
 <h3 id="暴力解决方案"><a href="#暴力解决方案" class="headerlink" title="暴力解决方案"></a>暴力解决方案</h3><pre><code>&lt;script&gt;
     //JS代码以Jquery为基础所写
     $(&apos;.content&apos;).hide();
@@ -377,7 +377,35 @@
     &lt;/script&gt;
 &lt;/html&gt;
 </code></pre><h3 id="大快人心"><a href="#大快人心" class="headerlink" title="大快人心"></a>大快人心</h3><p>&emsp;&emsp;我去666啊，解决了啊，老板老板，我搞定了啊（本来10分钟的工作，又愣是搞了这么多，我去 = =）  </p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>&emsp;&emsp;CSS虽然简单，但是用处还是大大滴啊！</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>&emsp;&emsp;CSS虽然简单，但是用处还是大大滴啊！  </p>
+<h3 id="后续发展"><a href="#后续发展" class="headerlink" title="后续发展"></a>后续发展</h3><p>&emsp;&emsp; 测试人员发现：<br>&emsp;&emsp;在一些版本的Firefox中，总是需要将鼠标移动一段距离，才能执行遮盖层上面的click事件，这不行啊，不符合要求。怎么办？  </p>
+<h3 id="又出一招"><a href="#又出一招" class="headerlink" title="又出一招"></a>又出一招</h3><p>&emsp;&emsp;既然遮掩不掉，那我将它们写成最小啊，宽高1px啊  </p>
+<pre><code>&lt;style&gt;
+    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
+    .page a{display: block;width: 100%;text-align: center;}
+    .content{overflow: hidden}
+&lt;/style&gt;
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;content&quot;&gt;
+            //这里是unity。。。
+        &lt;/div&gt;
+        &lt;div class=&quot;page&quot;&gt;
+            //这里是遮盖层
+            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;        
+        &lt;/div&gt;    
+    &lt;/body&gt;
+    &lt;script&gt;
+        //这里是逻辑，以Jquery为基础所写
+        //隐藏时
+        $(&apos;.content&apos;).css({&apos;height&apos;:&apos;1px&apos;,&apos;width&apos;:&apos;1px&apos;});
+        $(&apos;unity&apos;).css({&apos;height&apos;:&apos;1px&apos;,&apos;width&apos;:&apos;1px&apos;});//unity为代指
+        //显示时
+        $(&apos;.content&apos;).css({&apos;height&apos;:&apos;auto&apos;,&apos;width&apos;:&apos;100%&apos;});
+        $(&apos;unity&apos;).css({&apos;height&apos;:&apos;auto&apos;,&apos;width&apos;:&apos;100%&apos;});//unity为代指
+    &lt;/script&gt;
+&lt;/html&gt;
+</code></pre><h3 id="长舒一口气"><a href="#长舒一口气" class="headerlink" title="长舒一口气"></a>长舒一口气</h3><p>&emsp;&emsp; 各项浏览器测试了一番，终于大功告成了</p>
 
       
     </div>
@@ -555,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#聊聊今天工作中遇到的unity遮挡div的问题"><span class="nav-number">1.</span> <span class="nav-text">聊聊今天工作中遇到的unity遮挡div的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事情的经过"><span class="nav-number">1.2.</span> <span class="nav-text">事情的经过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#悲伤的故事发生了"><span class="nav-number">1.3.</span> <span class="nav-text">悲伤的故事发生了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力解决方案"><span class="nav-number">1.4.</span> <span class="nav-text">暴力解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#悲伤的故事又发生了"><span class="nav-number">1.5.</span> <span class="nav-text">悲伤的故事又发生了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八方求助"><span class="nav-number">1.6.</span> <span class="nav-text">八方求助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时来运转"><span class="nav-number">1.7.</span> <span class="nav-text">时来运转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大快人心"><span class="nav-number">1.8.</span> <span class="nav-text">大快人心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">1.9.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#聊聊今天工作中遇到的unity遮挡div的问题"><span class="nav-number">1.</span> <span class="nav-text">聊聊今天工作中遇到的unity遮挡div的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事情的经过"><span class="nav-number">1.2.</span> <span class="nav-text">事情的经过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#悲伤的故事发生了"><span class="nav-number">1.3.</span> <span class="nav-text">悲伤的故事发生了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力解决方案"><span class="nav-number">1.4.</span> <span class="nav-text">暴力解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#悲伤的故事又发生了"><span class="nav-number">1.5.</span> <span class="nav-text">悲伤的故事又发生了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八方求助"><span class="nav-number">1.6.</span> <span class="nav-text">八方求助</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时来运转"><span class="nav-number">1.7.</span> <span class="nav-text">时来运转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大快人心"><span class="nav-number">1.8.</span> <span class="nav-text">大快人心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">1.9.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后续发展"><span class="nav-number">1.10.</span> <span class="nav-text">后续发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#又出一招"><span class="nav-number">1.11.</span> <span class="nav-text">又出一招</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长舒一口气"><span class="nav-number">1.12.</span> <span class="nav-text">长舒一口气</span></a></li></ol></li></ol></div>
             
 
           </div>
