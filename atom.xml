@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-25T08:43:07.000Z</updated>
+  <updated>2017-05-25T08:45:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,10 +20,11 @@
     <link href="http://yoursite.com/2017/05/24/%E8%81%8A%E8%81%8AJavascript%E9%97%AD%E5%8C%85/"/>
     <id>http://yoursite.com/2017/05/24/聊聊Javascript闭包/</id>
     <published>2017-05-24T06:43:58.000Z</published>
-    <updated>2017-05-25T08:43:07.000Z</updated>
+    <updated>2017-05-25T08:45:48.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="javascript闭包"><a href="#javascript闭包" class="headerlink" title="javascript闭包"></a>javascript闭包</h2><p>闭包（closure）这个概念，相信大家在学习javascript的最初阶段都会产生过一些迷茫，这也算是JS语言的一个特点。<br>下面就来聊一下学习闭包的一点心得。  </p>
 <h3 id="到底什么是闭包"><a href="#到底什么是闭包" class="headerlink" title="到底什么是闭包"></a>到底什么是闭包</h3><p>闭包，就是能够读取其他函数内部变量的函数。  </p>
+<a id="more"></a>
 <h3 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h3><p>理解javascript变量的作用域是理解闭包的基础。<br>javascript的变量作用域分为两种：全局变量和局部变量  </p>
 <pre><code>&lt;script&gt;
     var n = 1;
@@ -83,7 +84,8 @@ result(); //1
     
     <summary type="html">
     
-      &lt;h2 id=&quot;javascript闭包&quot;&gt;&lt;a href=&quot;#javascript闭包&quot; class=&quot;headerlink&quot; title=&quot;javascript闭包&quot;&gt;&lt;/a&gt;javascript闭包&lt;/h2&gt;&lt;p&gt;闭包（closure）这个概念，相信大家在学习javascr
+      &lt;h2 id=&quot;javascript闭包&quot;&gt;&lt;a href=&quot;#javascript闭包&quot; class=&quot;headerlink&quot; title=&quot;javascript闭包&quot;&gt;&lt;/a&gt;javascript闭包&lt;/h2&gt;&lt;p&gt;闭包（closure）这个概念，相信大家在学习javascript的最初阶段都会产生过一些迷茫，这也算是JS语言的一个特点。&lt;br&gt;下面就来聊一下学习闭包的一点心得。  &lt;/p&gt;
+&lt;h3 id=&quot;到底什么是闭包&quot;&gt;&lt;a href=&quot;#到底什么是闭包&quot; class=&quot;headerlink&quot; title=&quot;到底什么是闭包&quot;&gt;&lt;/a&gt;到底什么是闭包&lt;/h3&gt;&lt;p&gt;闭包，就是能够读取其他函数内部变量的函数。  &lt;/p&gt;
     
     </summary>
     
