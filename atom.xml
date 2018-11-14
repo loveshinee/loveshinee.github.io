@@ -2,10 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>zhangzy&#39;s blog</title>
   
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-25T08:45:48.000Z</updated>
+  <updated>2018-11-14T14:27:41.014Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,71 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>反思</title>
+    <link href="http://yoursite.com/2018/11/14/%E5%8F%8D%E6%80%9D/"/>
+    <id>http://yoursite.com/2018/11/14/反思/</id>
+    <published>2018-11-14T14:24:13.000Z</published>
+    <updated>2018-11-14T14:27:41.014Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="个人反思问题"><a href="#个人反思问题" class="headerlink" title="个人反思问题"></a>个人反思问题</h2><p>仔细一想，很久没有维护这个博客了，这与当初开博客的初衷相违背了。因此，决定对整篇博客的风格进行一下变更，今后不仅仅是写一些技术类的博客，可能会写一些自己的见解与感悟，增加自己的积极性，就当是自己的吐槽与胡诌的地方了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;个人反思问题&quot;&gt;&lt;a href=&quot;#个人反思问题&quot; class=&quot;headerlink&quot; title=&quot;个人反思问题&quot;&gt;&lt;/a&gt;个人反思问题&lt;/h2&gt;&lt;p&gt;仔细一想，很久没有维护这个博客了，这与当初开博客的初衷相违背了。因此，决定对整篇博客的风格进行一下变更，今后
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>聊聊Javascript闭包</title>
     <link href="http://yoursite.com/2017/05/24/%E8%81%8A%E8%81%8AJavascript%E9%97%AD%E5%8C%85/"/>
     <id>http://yoursite.com/2017/05/24/聊聊Javascript闭包/</id>
     <published>2017-05-24T06:43:58.000Z</published>
     <updated>2017-05-25T08:45:48.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="javascript闭包"><a href="#javascript闭包" class="headerlink" title="javascript闭包"></a>javascript闭包</h2><p>闭包（closure）这个概念，相信大家在学习javascript的最初阶段都会产生过一些迷茫，这也算是JS语言的一个特点。<br>下面就来聊一下学习闭包的一点心得。  </p>
-<h3 id="到底什么是闭包"><a href="#到底什么是闭包" class="headerlink" title="到底什么是闭包"></a>到底什么是闭包</h3><p>闭包，就是能够读取其他函数内部变量的函数。  </p>
-<a id="more"></a>
-<h3 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h3><p>理解javascript变量的作用域是理解闭包的基础。<br>javascript的变量作用域分为两种：全局变量和局部变量  </p>
-<pre><code>&lt;script&gt;
-    var n = 1;
-    function test1(){
-        console.log(n);
-    }
-    test1(); // 1
-&lt;/script&gt;
-</code></pre><p>从上段代码中不难看出，函数内部可以直接读取全局变量。  </p>
-<pre><code>&lt;script&gt;
-    function test1(){
-        var n = 1;
-    }
-    console.log(n); //error  
-&lt;/script&gt;
-</code></pre><p>而上一段代码，试图在全局中读取test1()中的局部变量，就产生了错误。<br>值得注意的是，var不能被省略，否则变量会被当作全局变量来处理。  </p>
-<h3 id="那么如何获取函数内部的变量呢"><a href="#那么如何获取函数内部的变量呢" class="headerlink" title="那么如何获取函数内部的变量呢"></a>那么如何获取函数内部的变量呢</h3><p>怎么才能获取函数内部的变量呢，在函数内部使用建立函数呀，不就可以获取他上一层的变量了吗。  </p>
-<pre><code>function test1() {
-    var n = 1;
-
-    function test2(){
-        console.log(n);
-    }
-
-    return test2;
-}
-
-var result = test1();
-
-result(); //1
-</code></pre><p>在上面的代码中我们可以看出来，test1()中的变量是在test2()中可见的，这就是javascript中的链式作用域。<br>上面的代码，就是一个闭包。本质上，闭包就是将函数内部和函数外部连接起来的一个桥梁。  </p>
-<h3 id="闭包还有其他的用处吗"><a href="#闭包还有其他的用处吗" class="headerlink" title="闭包还有其他的用处吗"></a>闭包还有其他的用处吗</h3><p>我们知道闭包可以获取函数内部的变量。其实闭包还有一个作用：让这些变量始终保存在内存中。</p>
-<pre><code>&lt;script&gt;
-    function test1(){
-        var n = 1;
-
-        addNum = function(){
-            n += 1;
-        }
-
-        function test2(){
-            console.log(n);
-        }
-
-        return test2;
-    }
-
-    var result = test1();
-
-    result(); //1
-    addNum();
-    result(); // 2
-&lt;/script&gt;
-</code></pre><p>这段代码中，注意addNum并没有使用var关键字来声明，它其实是一个全局变量，所有可以被使用。<br>test2被赋予了一个全局变量，而test2依赖于test1，因此test1和test2始终处于内存当中。此外，addNum本身也是一个闭包，相当于一个setter。</p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>闭包虽然有很多好处，但是也要慎用，过多的闭包可能会导致内存泄漏的问题。</p>
-]]></content>
+    <content type="html"><![CDATA[<h2 id="javascript闭包"><a href="#javascript闭包" class="headerlink" title="javascript闭包"></a>javascript闭包</h2><p>闭包（closure）这个概念，相信大家在学习javascript的最初阶段都会产生过一些迷茫，这也算是JS语言的一个特点。<br>下面就来聊一下学习闭包的一点心得。  </p><h3 id="到底什么是闭包"><a href="#到底什么是闭包" class="headerlink" title="到底什么是闭包"></a>到底什么是闭包</h3><p>闭包，就是能够读取其他函数内部变量的函数。  </p><a id="more"></a><h3 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h3><p>理解javascript变量的作用域是理解闭包的基础。<br>javascript的变量作用域分为两种：全局变量和局部变量  </p><pre><code>&lt;script&gt;    var n = 1;    function test1(){        console.log(n);    }    test1(); // 1&lt;/script&gt;</code></pre><p>从上段代码中不难看出，函数内部可以直接读取全局变量。  </p><pre><code>&lt;script&gt;    function test1(){        var n = 1;    }    console.log(n); //error  &lt;/script&gt;</code></pre><p>而上一段代码，试图在全局中读取test1()中的局部变量，就产生了错误。<br>值得注意的是，var不能被省略，否则变量会被当作全局变量来处理。  </p><h3 id="那么如何获取函数内部的变量呢"><a href="#那么如何获取函数内部的变量呢" class="headerlink" title="那么如何获取函数内部的变量呢"></a>那么如何获取函数内部的变量呢</h3><p>怎么才能获取函数内部的变量呢，在函数内部使用建立函数呀，不就可以获取他上一层的变量了吗。  </p><pre><code>function test1() {    var n = 1;    function test2(){        console.log(n);    }    return test2;}var result = test1();result(); //1</code></pre><p>在上面的代码中我们可以看出来，test1()中的变量是在test2()中可见的，这就是javascript中的链式作用域。<br>上面的代码，就是一个闭包。本质上，闭包就是将函数内部和函数外部连接起来的一个桥梁。  </p><h3 id="闭包还有其他的用处吗"><a href="#闭包还有其他的用处吗" class="headerlink" title="闭包还有其他的用处吗"></a>闭包还有其他的用处吗</h3><p>我们知道闭包可以获取函数内部的变量。其实闭包还有一个作用：让这些变量始终保存在内存中。</p><pre><code>&lt;script&gt;    function test1(){        var n = 1;        addNum = function(){            n += 1;        }        function test2(){            console.log(n);        }        return test2;    }    var result = test1();    result(); //1    addNum();    result(); // 2&lt;/script&gt;</code></pre><p>这段代码中，注意addNum并没有使用var关键字来声明，它其实是一个全局变量，所有可以被使用。<br>test2被赋予了一个全局变量，而test2依赖于test1，因此test1和test2始终处于内存当中。此外，addNum本身也是一个闭包，相当于一个setter。</p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>闭包虽然有很多好处，但是也要慎用，过多的闭包可能会导致内存泄漏的问题。</p>]]></content>
     
     <summary type="html">
     
@@ -101,89 +65,7 @@ result(); //1
     <published>2017-04-19T07:11:45.000Z</published>
     <updated>2017-05-03T03:55:13.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="聊聊今天工作中遇到的unity遮挡div的问题"><a href="#聊聊今天工作中遇到的unity遮挡div的问题" class="headerlink" title="聊聊今天工作中遇到的unity遮挡div的问题"></a>聊聊今天工作中遇到的unity遮挡div的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>&emsp;&emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。</p>
-<h3 id="事情的经过"><a href="#事情的经过" class="headerlink" title="事情的经过"></a>事情的经过</h3><p>&emsp;&emsp;“我靠，这么简单的需求秒秒钟啊”，请看代码  </p>
-<pre><code>部分代码展示，这里意会即可
-&lt;style&gt;
-    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
-    .page a{display: block;width: 100%;text-align: center;}
-&lt;/style&gt;
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;div class=&quot;content&quot;&gt;
-            //这里是unity。。。
-        &lt;/div&gt;
-        &lt;div class=&quot;page&quot;&gt;
-            //这里是遮盖层
-            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;        
-        &lt;/div&gt;    
-    &lt;/body&gt;
-    &lt;script&gt;
-        //这里是逻辑
-    &lt;/script&gt;
-&lt;/html&gt;
-</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的<br><a id="more"></a></p>
-<h3 id="暴力解决方案"><a href="#暴力解决方案" class="headerlink" title="暴力解决方案"></a>暴力解决方案</h3><pre><code>&lt;script&gt;
-    //JS代码以Jquery为基础所写
-    $(&apos;.content&apos;).hide();
-&lt;/script&gt;
-</code></pre><p>&emsp;&emsp;哼，这下你拿我没办法了吧，让你消失  </p>
-<h3 id="悲伤的故事又发生了"><a href="#悲伤的故事又发生了" class="headerlink" title="悲伤的故事又发生了"></a>悲伤的故事又发生了</h3><p>&emsp;&emsp;div.content完美的消失了，但是！当他再次show()的时候，竟然要重新加载游戏，我去，这经理还不宰了我，不行不行，赶紧找下一套方案。  </p>
-<h3 id="八方求助"><a href="#八方求助" class="headerlink" title="八方求助"></a>八方求助</h3><p>&emsp;&emsp;“听说iframe能行”，好，速战速决。将.page抽出来，写在外部文件，用iframe引入。<br>&emsp;&emsp;然而，结果不如人意：<br>&emsp;&emsp;iframe显示出来了，但是unity依旧没有消失啊！伤心。。  </p>
-<h3 id="时来运转"><a href="#时来运转" class="headerlink" title="时来运转"></a>时来运转</h3><p>&emsp;&emsp;浏览各种解决方案时候，无意间看到了visibility这个属性，灵机一动，对啊，占位隐藏啊，说干就干啊  </p>
-<pre><code>&lt;style&gt;
-    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
-    .page a{display: block;width: 100%;text-align: center;}
-&lt;/style&gt;
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;div class=&quot;content&quot;&gt;
-            //这里是unity。。。
-        &lt;/div&gt;
-        &lt;div class=&quot;page&quot;&gt;
-            //这里是遮盖层
-            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;        
-        &lt;/div&gt;    
-    &lt;/body&gt;
-    &lt;script&gt;
-        //这里是逻辑，以Jquery为基础所写
-        //隐藏时
-        $(&apos;.content&apos;).css(&apos;visibility&apos;,&apos;hidden&apos;);
-        //显示时
-        $(&apos;.content&apos;).css(&apos;visibility&apos;,&apos;visible&apos;);
-    &lt;/script&gt;
-&lt;/html&gt;
-</code></pre><h3 id="大快人心"><a href="#大快人心" class="headerlink" title="大快人心"></a>大快人心</h3><p>&emsp;&emsp;我去666啊，解决了啊，老板老板，我搞定了啊（本来10分钟的工作，又愣是搞了这么多，我去 = =）  </p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>&emsp;&emsp;CSS虽然简单，但是用处还是大大滴啊！  </p>
-<h3 id="后续发展"><a href="#后续发展" class="headerlink" title="后续发展"></a>后续发展</h3><p>&emsp;&emsp; 测试人员发现：<br>&emsp;&emsp;在一些版本的Firefox中，总是需要将鼠标移动一段距离，才能执行遮盖层上面的click事件，这不行啊，不符合要求。怎么办？  </p>
-<h3 id="又出一招"><a href="#又出一招" class="headerlink" title="又出一招"></a>又出一招</h3><p>&emsp;&emsp;既然遮掩不掉，那我将它们写成最小啊，宽高1px啊  </p>
-<pre><code>&lt;style&gt;
-    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}
-    .page a{display: block;width: 100%;text-align: center;}
-    .content{overflow: hidden}
-&lt;/style&gt;
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;div class=&quot;content&quot;&gt;
-            //这里是unity。。。
-        &lt;/div&gt;
-        &lt;div class=&quot;page&quot;&gt;
-            //这里是遮盖层
-            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;        
-        &lt;/div&gt;    
-    &lt;/body&gt;
-    &lt;script&gt;
-        //这里是逻辑，以Jquery为基础所写
-        //隐藏时
-        $(&apos;.content&apos;).css({&apos;height&apos;:&apos;1px&apos;,&apos;width&apos;:&apos;1px&apos;});
-        $(&apos;unity&apos;).css({&apos;height&apos;:&apos;1px&apos;,&apos;width&apos;:&apos;1px&apos;});//unity为代指
-        //显示时
-        $(&apos;.content&apos;).css({&apos;height&apos;:&apos;auto&apos;,&apos;width&apos;:&apos;100%&apos;});
-        $(&apos;unity&apos;).css({&apos;height&apos;:&apos;auto&apos;,&apos;width&apos;:&apos;100%&apos;});//unity为代指
-    &lt;/script&gt;
-&lt;/html&gt;
-</code></pre><h3 id="长舒一口气"><a href="#长舒一口气" class="headerlink" title="长舒一口气"></a>长舒一口气</h3><p>&emsp;&emsp; 各项浏览器测试了一番，终于大功告成了</p>
-]]></content>
+    <content type="html"><![CDATA[<h2 id="聊聊今天工作中遇到的unity遮挡div的问题"><a href="#聊聊今天工作中遇到的unity遮挡div的问题" class="headerlink" title="聊聊今天工作中遇到的unity遮挡div的问题"></a>聊聊今天工作中遇到的unity遮挡div的问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>&emsp;&emsp;今天接到的一个需求是，在页游中点击一个按钮时，弹出一张图片，覆盖整个游戏界面。</p><h3 id="事情的经过"><a href="#事情的经过" class="headerlink" title="事情的经过"></a>事情的经过</h3><p>&emsp;&emsp;“我靠，这么简单的需求秒秒钟啊”，请看代码  </p><pre><code>部分代码展示，这里意会即可&lt;style&gt;    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}    .page a{display: block;width: 100%;text-align: center;}&lt;/style&gt;&lt;html&gt;    &lt;body&gt;        &lt;div class=&quot;content&quot;&gt;            //这里是unity。。。        &lt;/div&gt;        &lt;div class=&quot;page&quot;&gt;            //这里是遮盖层            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;                &lt;/div&gt;        &lt;/body&gt;    &lt;script&gt;        //这里是逻辑    &lt;/script&gt;&lt;/html&gt;</code></pre><h3 id="悲伤的故事发生了"><a href="#悲伤的故事发生了" class="headerlink" title="悲伤的故事发生了"></a>悲伤的故事发生了</h3><p>&emsp;&emsp;div.page并不能显示出来。“我擦，什么鬼？”，没办法，这是你逼我的<br><a id="more"></a></p><h3 id="暴力解决方案"><a href="#暴力解决方案" class="headerlink" title="暴力解决方案"></a>暴力解决方案</h3><pre><code>&lt;script&gt;    //JS代码以Jquery为基础所写    $(&apos;.content&apos;).hide();&lt;/script&gt;</code></pre><p>&emsp;&emsp;哼，这下你拿我没办法了吧，让你消失  </p><h3 id="悲伤的故事又发生了"><a href="#悲伤的故事又发生了" class="headerlink" title="悲伤的故事又发生了"></a>悲伤的故事又发生了</h3><p>&emsp;&emsp;div.content完美的消失了，但是！当他再次show()的时候，竟然要重新加载游戏，我去，这经理还不宰了我，不行不行，赶紧找下一套方案。  </p><h3 id="八方求助"><a href="#八方求助" class="headerlink" title="八方求助"></a>八方求助</h3><p>&emsp;&emsp;“听说iframe能行”，好，速战速决。将.page抽出来，写在外部文件，用iframe引入。<br>&emsp;&emsp;然而，结果不如人意：<br>&emsp;&emsp;iframe显示出来了，但是unity依旧没有消失啊！伤心。。  </p><h3 id="时来运转"><a href="#时来运转" class="headerlink" title="时来运转"></a>时来运转</h3><p>&emsp;&emsp;浏览各种解决方案时候，无意间看到了visibility这个属性，灵机一动，对啊，占位隐藏啊，说干就干啊  </p><pre><code>&lt;style&gt;    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}    .page a{display: block;width: 100%;text-align: center;}&lt;/style&gt;&lt;html&gt;    &lt;body&gt;        &lt;div class=&quot;content&quot;&gt;            //这里是unity。。。        &lt;/div&gt;        &lt;div class=&quot;page&quot;&gt;            //这里是遮盖层            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;                &lt;/div&gt;        &lt;/body&gt;    &lt;script&gt;        //这里是逻辑，以Jquery为基础所写        //隐藏时        $(&apos;.content&apos;).css(&apos;visibility&apos;,&apos;hidden&apos;);        //显示时        $(&apos;.content&apos;).css(&apos;visibility&apos;,&apos;visible&apos;);    &lt;/script&gt;&lt;/html&gt;</code></pre><h3 id="大快人心"><a href="#大快人心" class="headerlink" title="大快人心"></a>大快人心</h3><p>&emsp;&emsp;我去666啊，解决了啊，老板老板，我搞定了啊（本来10分钟的工作，又愣是搞了这么多，我去 = =）  </p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>&emsp;&emsp;CSS虽然简单，但是用处还是大大滴啊！  </p><h3 id="后续发展"><a href="#后续发展" class="headerlink" title="后续发展"></a>后续发展</h3><p>&emsp;&emsp; 测试人员发现：<br>&emsp;&emsp;在一些版本的Firefox中，总是需要将鼠标移动一段距离，才能执行遮盖层上面的click事件，这不行啊，不符合要求。怎么办？  </p><h3 id="又出一招"><a href="#又出一招" class="headerlink" title="又出一招"></a>又出一招</h3><p>&emsp;&emsp;既然遮掩不掉，那我将它们写成最小啊，宽高1px啊  </p><pre><code>&lt;style&gt;    .page{display: none;position: absolute;left: 0;top: 0;z-index: 1000;width: 100%}    .page a{display: block;width: 100%;text-align: center;}    .content{overflow: hidden}&lt;/style&gt;&lt;html&gt;    &lt;body&gt;        &lt;div class=&quot;content&quot;&gt;            //这里是unity。。。        &lt;/div&gt;        &lt;div class=&quot;page&quot;&gt;            //这里是遮盖层            &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/a&gt;                &lt;/div&gt;        &lt;/body&gt;    &lt;script&gt;        //这里是逻辑，以Jquery为基础所写        //隐藏时        $(&apos;.content&apos;).css({&apos;height&apos;:&apos;1px&apos;,&apos;width&apos;:&apos;1px&apos;});        $(&apos;unity&apos;).css({&apos;height&apos;:&apos;1px&apos;,&apos;width&apos;:&apos;1px&apos;});//unity为代指        //显示时        $(&apos;.content&apos;).css({&apos;height&apos;:&apos;auto&apos;,&apos;width&apos;:&apos;100%&apos;});        $(&apos;unity&apos;).css({&apos;height&apos;:&apos;auto&apos;,&apos;width&apos;:&apos;100%&apos;});//unity为代指    &lt;/script&gt;&lt;/html&gt;</code></pre><h3 id="长舒一口气"><a href="#长舒一口气" class="headerlink" title="长舒一口气"></a>长舒一口气</h3><p>&emsp;&emsp; 各项浏览器测试了一番，终于大功告成了</p>]]></content>
     
     <summary type="html">
     
@@ -224,34 +106,7 @@ result(); //1
     <published>2017-04-18T02:58:09.000Z</published>
     <updated>2017-05-03T03:54:29.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><p>&emsp;&emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  </p>
-<pre><code>例1:
-    &lt;script&gt;
-        function setName(obj){  
-            obj.name = &apos;Tom&apos;;  
-        }  
-
-        var someOne = new Object();  
-        setName(someOne);  
-        alert(someOne.name); // &apos;Tom&apos;
-    &lt;/script&gt;
-</code></pre><p>&emsp;&emsp;“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  </p>
-<p>&emsp;&emsp;不着急，我们慢慢讲：<br> <a id="more"></a><br>&emsp;&emsp;当我们把函数外部的值肤质给函数内部的参数时，就相当于把值从一个变量复制到另一个变量。<br>&emsp;&emsp;换句话说，基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，就如同引用类型的复制一样了。  </p>
-<p>&emsp;&emsp;让我们回到例1:<br>&emsp;&emsp;在例1中，在这个函数内部，obj和someOne引用的是同一个对象。<br>&emsp;&emsp;即使这个变量是按照值传递的，obj也会按引用访问同一个对象。<br>&emsp;&emsp;那么我们如何才能证明它是值传递呢？请看下一个例子：  </p>
-<pre><code>例2: 
-    &lt;script&gt; 
-        function setName(obj){  
-            obj.name = &apos;Tom&apos;;  
-            obj = new Object();
-            obj.name = &apos;Jack&apos;;
-        }  
-
-        var someOne = new Object();  
-        setName(someOne);  
-        alert(someOne.name); // &apos;Tom&apos; 
-    &lt;/script&gt;
-</code></pre><p>&emsp;&emsp;如果参数是引用传递的话，那么someOne会被自动修改指向name属性为’jack’的新对象。<br>&emsp;&emsp;而实际情况是，someOne的name属性依旧是’Tom’    </p>
-]]></content>
+    <content type="html"><![CDATA[<h2 id="聊聊JS函数传递参数"><a href="#聊聊JS函数传递参数" class="headerlink" title="聊聊JS函数传递参数"></a>聊聊JS函数传递参数</h2><p>&emsp;&emsp;我们知道，ECMAScript中所有的参数都是按值来传递的。但是初级开发人员分分钟给我举出一个反例来:  </p><pre><code>例1:    &lt;script&gt;        function setName(obj){              obj.name = &apos;Tom&apos;;          }          var someOne = new Object();          setName(someOne);          alert(someOne.name); // &apos;Tom&apos;    &lt;/script&gt;</code></pre><p>&emsp;&emsp;“你看，当为函数内部变量obj添加name属性时，外部变量也随之改变了”。  </p><p>&emsp;&emsp;不着急，我们慢慢讲：<br> <a id="more"></a><br>&emsp;&emsp;当我们把函数外部的值肤质给函数内部的参数时，就相当于把值从一个变量复制到另一个变量。<br>&emsp;&emsp;换句话说，基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，就如同引用类型的复制一样了。  </p><p>&emsp;&emsp;让我们回到例1:<br>&emsp;&emsp;在例1中，在这个函数内部，obj和someOne引用的是同一个对象。<br>&emsp;&emsp;即使这个变量是按照值传递的，obj也会按引用访问同一个对象。<br>&emsp;&emsp;那么我们如何才能证明它是值传递呢？请看下一个例子：  </p><pre><code>例2:     &lt;script&gt;         function setName(obj){              obj.name = &apos;Tom&apos;;              obj = new Object();            obj.name = &apos;Jack&apos;;        }          var someOne = new Object();          setName(someOne);          alert(someOne.name); // &apos;Tom&apos;     &lt;/script&gt;</code></pre><p>&emsp;&emsp;如果参数是引用传递的话，那么someOne会被自动修改指向name属性为’jack’的新对象。<br>&emsp;&emsp;而实际情况是，someOne的name属性依旧是’Tom’    </p>]]></content>
     
     <summary type="html">
     
@@ -283,14 +138,14 @@ result(); //1
     <published>2017-04-10T08:28:40.000Z</published>
     <updated>2017-04-11T10:07:33.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="My-First-Post"><a href="#My-First-Post" class="headerlink" title="My First Post"></a>My First Post</h2><p>  这是本人使用hexo+github搭建的博客的第一篇文章。^_^ 在经历个各种坑以后突然发现这个让人眼前一亮的东西，着实让我虎躯一震。  </p>
-<p>  既然已经建立了自己的个人博客，那就要用心的去经营。以后我自己会在这个平台上慢慢分享一些自己的学习踩坑经历和自己的一些见解（本人就是个菜鸟，还是希望能够得到各路大神的指导）。  </p>
-<p>  简单介绍一些，本人是一位web开发者，供职于一家游戏公司，负责部分后台以及游戏官网的开发。由于工作原因，涉及到了后台语言PHP以及前端的一些技术。建立这个博客的目的在于分享和整理一些自己的觉得认为重要的知识点，也算是对自己的接触到的知识的一种巩固和积累吧。</p>
-]]></content>
+    <content type="html"><![CDATA[<h2 id="My-First-Post"><a href="#My-First-Post" class="headerlink" title="My First Post"></a>My First Post</h2><p>  这是本人使用hexo+github搭建的博客的第一篇文章。^_^ 在经历个各种坑以后突然发现这个让人眼前一亮的东西，着实让我虎躯一震。  </p><p>  既然已经建立了自己的个人博客，那就要用心的去经营。以后我自己会在这个平台上慢慢分享一些自己的学习踩坑经历和自己的一些见解（本人就是个菜鸟，还是希望能够得到各路大神的指导）。  </p><p>  简单介绍一些，本人是一位web开发者，供职于一家游戏公司，负责部分后台以及游戏官网的开发。由于工作原因，涉及到了后台语言PHP以及前端的一些技术。建立这个博客的目的在于分享和整理一些自己的觉得认为重要的知识点，也算是对自己的接触到的知识的一种巩固和积累吧。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;My-First-Post&quot;&gt;&lt;a href=&quot;#My-First-Post&quot; class=&quot;headerlink&quot; title=&quot;My First Post&quot;&gt;&lt;/a&gt;My First Post&lt;/h2&gt;&lt;p&gt;  这是本人使用hexo+github搭建的博客的第
+      
+      
+        &lt;h2 id=&quot;My-First-Post&quot;&gt;&lt;a href=&quot;#My-First-Post&quot; class=&quot;headerlink&quot; title=&quot;My First Post&quot;&gt;&lt;/a&gt;My First Post&lt;/h2&gt;&lt;p&gt;  这是本人使用hexo+github搭建的博客的第
+      
     
     </summary>
     
@@ -306,20 +161,14 @@ result(); //1
     <published>2017-04-10T07:42:42.000Z</published>
     <updated>2017-04-10T07:42:42.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
     
     </summary>
     
